@@ -8,5 +8,41 @@
 
 
 <ion-content padding>
+  <ion-card *ngFor="let mind of minds">
 
+    <ion-item class="header">
+      <ion-avatar item-start>
+        <img src="{{mind.avatar}}">
+      </ion-avatar>
+      <h2>{{mind.title}}</h2>
+      <p>{{mind.date}}</p>
+    </ion-item>
+
+    <img src="{{mind.image}}">
+
+    <ion-card-content>
+      <p>{{mind.descriptions}}</p>
+    </ion-card-content>
+
+    <ion-row class="footer">
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{mind.likes ? mind.likes.length : '0'}} Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{mind.comments ? mind.comments.length : '0'}} Comments</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{mind.lastUpdate}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 </ion-content>

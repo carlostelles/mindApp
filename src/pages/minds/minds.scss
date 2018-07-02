@@ -1,3 +1,20 @@
 page-minds {
+  ion-content {
+    background: #2d2d2d !important;
 
+    .header {
+      background: #ffa500 !important;
+    }
+
+    .footer {
+      background: #eee !important;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  ion-card {
+    width: calc(25% - 20px) !important;
+    display: inline-block !important;
+  }
 }
