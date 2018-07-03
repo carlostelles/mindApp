@@ -1,3 +1,39 @@
 page-add {
 
+  .profile-image-wrapper {
+    text-align: center;
+    margin: 20px 0;
+
+    .profile-image {
+      width: 95%;
+      height: 30rem;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .profile-image-placeholder {
+      display: inline-block;
+      background-color: #eee;
+      width: 95%;
+      height: 30rem;
+
+      ion-icon {
+        font-size: 44px;
+        margin-bottom: -10px;
+        margin-top: 8rem;
+      }
+    }
+  }
+
+  .list-md {
+    margin: -1px 16px 16px 0;
+
+    .item-input:last-child {
+      margin-left: 16px;
+      padding-left: 0;
+      width: 96%;
+    }
+  }
 }

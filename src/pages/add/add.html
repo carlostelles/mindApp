@@ -1,9 +1,38 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Adicionar</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        <span color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
+        <span color="primary" showWhen="ios">Pronto</span>
+        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">
+    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+    <div class="profile-image-wrapper" (click)="getPicture()">
+      <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">
+        <ion-icon name="add"></ion-icon>
+        <div>Adicionar Imagem</div>
+      </div>
+      <div class="profile-image" [style.backgroundImage]="getImageStyle()" *ngIf="this.form.controls.image.value"></div>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Título" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea placeholder="Descrição" formControlName="descriptions" autoresize></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

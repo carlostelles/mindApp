@@ -11,6 +11,8 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Api, MindService} from '../providers';
+import {Camera} from '@ionic-native/camera';
+import {TextareaAutoresize} from "../directive/textareaAutoresize.directive";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {Api, MindService} from '../providers';
     MindsPage,
     AboutPage,
     AddPage,
-    TabsPage
+    TabsPage,
+    TextareaAutoresize
   ],
   imports: [
     BrowserModule,
@@ -35,9 +38,13 @@ import {Api, MindService} from '../providers';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     Api,
     MindService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ],
+  exports: [
+    TextareaAutoresize
   ]
 })
 export class AppModule {}
