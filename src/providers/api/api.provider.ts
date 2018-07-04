@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class Api {
+export class ApiProvider {
   url: string = 'https://example.com/api/v1';
 
   constructor(public http: HttpClient) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Mind } from '../../models/mind';
 
 @Injectable()
-export class MindService {
+export class MindProvider {
   minds: Mind[] = [];
 
   defaultMind: any = {
@@ -92,7 +92,14 @@ export class MindService {
     ];
 
     for (let mind of minds) {
-      this.minds.push(new Mind(mind.title, mind.descriptions, mind.image, mind.avatar, mind.createdDate, mind.lastUpdate));
+      let newMind = new Mind();
+      newMind.title = mind.title;
+      newMind.descriptions = mind.descriptions
+      newMind.image = mind.image
+      newMind.avatar = mind.avatar
+      newMind.createdDate = mind.createdDate
+      newMind.lastUpdate = mind.lastUpdate
+      this.add(newMind);
     }
   }
 

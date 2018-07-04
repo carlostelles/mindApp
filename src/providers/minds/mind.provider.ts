@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Api } from '../api/api';
+import { ApiProvider } from '../api/api.provider';
 import {Mind} from '../../models/mind';
 
 @Injectable()
-export class MindService {
+export class MindProvider {
 
-  constructor(public api: Api) { }
+  constructor(public api: ApiProvider) { }
 
   query(params?: any) {
     return this.api.get('/mind', params);

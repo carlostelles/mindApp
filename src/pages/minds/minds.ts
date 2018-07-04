@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {Mind} from '../../models/mind';
-import {MindService} from '../../mocks/providers/mind';
+import {MindProvider} from '../../mocks/providers/mind';
 
 @Component({
   selector: 'page-minds',
@@ -12,7 +12,7 @@ export class MindsPage {
   minds: Mind[];
   mindCurrent: Mind;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mindService: MindService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mindService: MindProvider) {
     this.minds = this.get();
   }
 

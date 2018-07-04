@@ -10,9 +10,11 @@ import {TabsPage} from '../pages/tabs/tabs';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {Api, MindService} from '../providers';
+import {ApiProvider, MindProvider} from '../providers';
 import {Camera} from '@ionic-native/camera';
-import {TextareaAutoresize} from "../directive/textareaAutoresize.directive";
+import {TextareaAutoresize} from './directive';
+import {Ng2OrderModule} from "ng2-order-pipe";
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import {TextareaAutoresize} from "../directive/textareaAutoresize.directive";
     AboutPage,
     AddPage,
     TabsPage,
-    TextareaAutoresize
+    TextareaAutoresize,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MindApp)
+    IonicModule.forRoot(MindApp),
+    Ng2OrderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,8 +43,8 @@ import {TextareaAutoresize} from "../directive/textareaAutoresize.directive";
     StatusBar,
     SplashScreen,
     Camera,
-    Api,
-    MindService,
+    ApiProvider,
+    MindProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   exports: [

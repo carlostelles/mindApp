@@ -2,9 +2,9 @@ import {Component, ViewChild} from '@angular/core';
 import {NavController, ViewController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Camera} from '@ionic-native/camera';
-import {MindsPage} from "../minds/minds";
-import {MindService} from "../../mocks/providers/mind";
-import {Mind} from "../../models/mind";
+import {MindsPage} from '../minds/minds';
+import {Mind} from '../../models/mind';
+import {MindProvider} from "../../mocks/providers/mind";
 
 @Component({
   selector: 'page-add',
@@ -21,16 +21,21 @@ export class AddPage {
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController,
               public formBuilder: FormBuilder, public camera: Camera,
-              public mindService: MindService) {
-    this.form = formBuilder.group({
-      image: [''],
-      title: ['', Validators.required],
-      descriptions: ['', Validators.required]
-    });
+              private mindProvider: MindProvider) {
+
+    this.createForm();
 
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
       this.isReadyToSave = this.form.valid;
+    });
+  }
+
+  createForm() {
+    this.form = this.formBuilder.group({
+      image: [''],
+      title: ['', Validators.required],
+      descriptions: ['', Validators.required]
     });
   }
 
@@ -77,9 +82,17 @@ export class AddPage {
   done() {
     if (!this.form.valid) { return; }
 
-    let mind: Mind = new Mind(this.form.controls.title.value, this.form.controls.descriptions.value, this.form.controls.image.value);
-    console.log(mind)
-    mindService.add(mind);
+    let date: Date = new Date();
+    let mind: Mind = new Mind();
+    mind.title = this.form.controls.title.value;
+    mind.descriptions = this.form.controls.descriptions.value;
+    mind.image = this.form.controls.image.value;
+    mind.createdDate = date.toDateString();
+    mind.lastUpdate = date.toDateString();
+    mind.avatar = 'assets/imgs//avatars/avataaars_' + Math.floor(Math.random() * 7) + '.png';
+
+    this.mindProvider.add(mind);
+    this.createForm();
     this.viewCtrl.getNav().push(MindsPage);
   }
 

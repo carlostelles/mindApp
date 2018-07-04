@@ -8,14 +8,14 @@
 
 
 <ion-content>
-  <ion-card *ngFor="let mind of minds">
+  <ion-card *ngFor="let mind of minds | orderBy: lastUpdate: true">
 
     <ion-item class="header">
       <ion-avatar item-start>
         <img src="{{mind.avatar}}">
       </ion-avatar>
       <h2>{{mind.title}}</h2>
-      <p>{{mind.date}}</p>
+      <p>{{mind.createdDate | timeAgo}}</p>
     </ion-item>
 
     <img src="{{mind.image}}">
@@ -37,9 +37,9 @@
           <div>{{mind.comments ? mind.comments.length : '0'}} Comments</div>
         </button>
       </ion-col>
-      <ion-col center text-center>
+      <ion-col center text-center padding-top>
         <ion-note>
-          {{mind.lastUpdate}}
+          {{mind.lastUpdate | timeAgo}}
         </ion-note>
       </ion-col>
     </ion-row>
