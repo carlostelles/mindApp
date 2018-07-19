@@ -10,17 +10,32 @@ import {TabsPage} from '../pages/tabs/tabs';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {ApiProvider, MindProvider} from '../providers';
+import {ApiProvider, DataProvider, MindProvider} from '../providers';
 import {Camera} from '@ionic-native/camera';
 import {TextareaAutoresize} from './directive';
 import {Ng2OrderModule} from "ng2-order-pipe";
 import {TimeAgoPipe} from 'time-ago-pipe';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireStorageModule} from 'angularfire2/storage';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {MyFilesPage} from '../pages/my-files/my-files';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyDVZ6F7-FHUjEEP56AX0Y5jNbEFYDFlp6Y',
+  authDomain: 'mindapp-cwi.firebaseapp.com',
+  databaseURL: 'https://mindapp-cwi.firebaseio.com',
+  projectId: 'mindapp-cwi',
+  storageBucket: 'mindapp-cwi.appspot.com',
+  messagingSenderId: '298940142311'
+};
 
 @NgModule({
   declarations: [
     MindApp,
     MindsPage,
     AboutPage,
+    MyFilesPage,
     AddPage,
     TabsPage,
     TextareaAutoresize,
@@ -29,12 +44,16 @@ import {TimeAgoPipe} from 'time-ago-pipe';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MindApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
     Ng2OrderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MindApp,
     MindsPage,
+    MyFilesPage,
     AboutPage,
     AddPage,
     TabsPage
@@ -42,10 +61,12 @@ import {TimeAgoPipe} from 'time-ago-pipe';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     Camera,
     ApiProvider,
     MindProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ],
   exports: [
     TextareaAutoresize

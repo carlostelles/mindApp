@@ -1,19 +1,9 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import * as firebase from 'firebase';
+import {Component} from '@angular/core';
+import {Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {TabsPage} from '../pages/tabs/tabs';
-
-const config = {
-  apiKey: 'AIzaSyDVZ6F7-FHUjEEP56AX0Y5jNbEFYDFlp6Y',
-  authDomain: 'mindapp-cwi.firebaseapp.com',
-  databaseURL: 'https://mindapp-cwi.firebaseio.com',
-  projectId: 'mindapp-cwi',
-  storageBucket: 'mindapp-cwi.appspot.com',
-  messagingSenderId: '298940142311'
-};
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +18,6 @@ export class MindApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    firebase.initializeApp(config);
   }
 }
 

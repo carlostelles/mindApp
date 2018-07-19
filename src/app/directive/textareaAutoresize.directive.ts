@@ -1,4 +1,4 @@
-import { Directive, HostListener, OnInit, ElementRef } from "@angular/core";
+import { Directive, HostListener, OnInit, ElementRef } from '@angular/core';
 
 @Directive({
   selector: "ion-textarea[autoresize]" // Attribute selector
